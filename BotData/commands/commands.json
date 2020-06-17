@@ -1,0 +1,159 @@
+{
+  "command": [
+    {
+      "name": "helpme",
+      "actions": [
+        {
+          "name": "help menu",
+          "category": "Message",
+          "type": "Send Embed",
+          "fields": [
+            {
+              "name": "",
+              "value": "---- Moderator Commands ----",
+              "inline": "true"
+            },
+            {
+              "name": "!bban",
+              "value": "Bans the @ user.",
+              "inline": "false"
+            },
+            {
+              "name": "!bkick",
+              "value": "Kicks the @ user.",
+              "inline": "true"
+            },
+            {
+              "name": "",
+              "value": "",
+              "inline": "true"
+            }
+          ],
+          "channelname": "$$Command Channel",
+          "color": "FFFFFF",
+          "title": "Balla Leaks",
+          "url": "",
+          "authorname": "By: Balla Leaks Community",
+          "authorimageurl": "",
+          "authorlink": "",
+          "description": "A bot for Balla Leaks",
+          "thumbnail": "",
+          "image": "",
+          "footer": "",
+          "timestamp": "false"
+        }
+      ]
+    },
+    {
+      "name": "bkick",
+      "actions": [
+        {
+          "name": "check for kick perms",
+          "category": "User Action",
+          "type": "Check User Permissions",
+          "trueActions": [
+            {
+              "name": "get user to kick",
+              "category": "Variable",
+              "type": "Get Mentioned User",
+              "varname": "kickuser",
+              "vartype": "User"
+            },
+            {
+              "name": "kick user",
+              "category": "User Action",
+              "type": "Kick User",
+              "user": "%%kickuser%%",
+              "reason": ""
+            },
+            {
+              "name": "user has been kicked",
+              "category": "Message",
+              "type": "Send Message",
+              "channelname": "$$CommandChannel$$",
+              "messagetext": "User has been kicked."
+            }
+          ],
+          "falseActions": [
+            {
+              "name": "doesnt have kick perms",
+              "category": "Message",
+              "type": "Send Message",
+              "channelname": "$$CommandChannel$$",
+              "messagetext": "<@$$CommandAuthor$$> you do not have the perms for this command"
+            }
+          ],
+          "user": "$$CommandAuthor$$",
+          "permissions": [
+            "ADMINISTRATOR"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "bban",
+      "actions": [
+        {
+          "name": "check for ban perms",
+          "category": "User Action",
+          "type": "Check User Permissions",
+          "trueActions": [
+            {
+              "name": "get user to ban",
+              "category": "Variable",
+              "type": "Get Mentioned User",
+              "varname": "banuser",
+              "vartype": "User"
+            },
+            {
+              "name": "ban user",
+              "category": "User Action",
+              "type": "Ban User",
+              "user": "%%banuser%%",
+              "reason": "",
+              "days": ""
+            },
+            {
+              "name": "user has been banned",
+              "category": "Message",
+              "type": "Send Message",
+              "channelname": "$$CommandChannel$$",
+              "messagetext": "User has been banned"
+            }
+          ],
+          "falseActions": [
+            {
+              "name": "doesnt have ban perms",
+              "category": "Message",
+              "type": "Send Message",
+              "channelname": "$$CommandChannel$$",
+              "messagetext": "<@$$CommandAuthor$$> you do not have the perms for this command"
+            }
+          ],
+          "user": "$$CommandAuthor$$",
+          "permissions": [
+            "ADMINISTRATOR"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "caxnx",
+      "actions": [
+        {
+          "name": "Bot game",
+          "category": "Bot Action",
+          "type": "Set Bot Game",
+          "game": "!helpme"
+        },
+        {
+          "name": "changed bot game",
+          "category": "Message",
+          "type": "Send Message",
+          "channelname": "$$CommandChannel$$",
+          "messagetext": "Bot status has been updated."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,525 @@
+{
+  "nodes": [
+    {
+      "type": "command",
+      "name": "helpme",
+      "guid": "5dc75895-4255-4322-acac-adc7bd9313c8",
+      "outputs": [
+        {
+          "label": "responses",
+          "connections": [
+            "b133cbac-9392-4c2b-b628-b54c59b3d564"
+          ]
+        }
+      ],
+      "x": 43,
+      "y": 99
+    },
+    {
+      "type": "response",
+      "name": "check for kick perms",
+      "guid": "a424ee5f-7a53-45f4-83bd-0d718dbcb485",
+      "embedfields": [],
+      "outputs": [
+        {
+          "label": "has perms",
+          "connections": [
+            "83fa5ad0-28de-440d-a29e-2e35c877cfe7"
+          ]
+        },
+        {
+          "label": "doesn't have perms",
+          "connections": [
+            "47cdb4b2-01d0-4fa1-9a95-a4e156c4d291"
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "4e60e2f8-0956-4bd2-b36c-0ad47a3c5a44"
+        }
+      ],
+      "x": 239,
+      "y": 191,
+      "rtype": "User Action",
+      "rsubtype": "Check User Permissions",
+      "formdata": [
+        "$$CommandAuthor$$",
+        [
+          "ADMINISTRATOR"
+        ]
+      ],
+      "formnames": [
+        "user",
+        "permissions"
+      ]
+    },
+    {
+      "type": "response",
+      "name": "doesnt have kick perms",
+      "guid": "47cdb4b2-01d0-4fa1-9a95-a4e156c4d291",
+      "embedfields": [],
+      "outputs": [
+        {
+          "label": "next response",
+          "connections": []
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "a424ee5f-7a53-45f4-83bd-0d718dbcb485"
+        }
+      ],
+      "x": 449,
+      "y": 189,
+      "rtype": "Message",
+      "rsubtype": "Send Message",
+      "formdata": [
+        "$$CommandChannel$$",
+        "<@$$CommandAuthor$$> you do not have the perms for this command"
+      ],
+      "formnames": [
+        "channelName",
+        "messageText"
+      ]
+    },
+    {
+      "type": "response",
+      "name": "get user to kick",
+      "guid": "83fa5ad0-28de-440d-a29e-2e35c877cfe7",
+      "embedfields": [],
+      "outputs": [
+        {
+          "label": "next response",
+          "connections": [
+            "465e398c-38a4-435e-8d65-4a7cb285cc66"
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "a424ee5f-7a53-45f4-83bd-0d718dbcb485"
+        }
+      ],
+      "x": 454,
+      "y": 329,
+      "rtype": "Variable",
+      "rsubtype": "Get Mentioned User",
+      "formdata": [
+        "kickuser",
+        "User"
+      ],
+      "formnames": [
+        "varname",
+        "vartype"
+      ]
+    },
+    {
+      "type": "response",
+      "name": "kick user",
+      "guid": "465e398c-38a4-435e-8d65-4a7cb285cc66",
+      "embedfields": [],
+      "outputs": [
+        {
+          "label": "next response",
+          "connections": [
+            "e0a48cfb-39d4-4346-9e6a-d139075d0f2b"
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "83fa5ad0-28de-440d-a29e-2e35c877cfe7"
+        }
+      ],
+      "x": 636,
+      "y": 343,
+      "rtype": "User Action",
+      "rsubtype": "Kick User",
+      "formdata": [
+        "%%kickuser%%",
+        ""
+      ],
+      "formnames": [
+        "user",
+        "reason"
+      ]
+    },
+    {
+      "type": "response",
+      "name": "user has been kicked",
+      "guid": "e0a48cfb-39d4-4346-9e6a-d139075d0f2b",
+      "embedfields": [],
+      "outputs": [
+        {
+          "label": "next response",
+          "connections": []
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "465e398c-38a4-435e-8d65-4a7cb285cc66"
+        }
+      ],
+      "x": 816,
+      "y": 360,
+      "rtype": "Message",
+      "rsubtype": "Send Message",
+      "formdata": [
+        "$$CommandChannel$$",
+        "User has been kicked."
+      ],
+      "formnames": [
+        "channelName",
+        "messageText"
+      ]
+    },
+    {
+      "type": "command",
+      "name": "bkick",
+      "guid": "4e60e2f8-0956-4bd2-b36c-0ad47a3c5a44",
+      "outputs": [
+        {
+          "label": "responses",
+          "connections": [
+            "a424ee5f-7a53-45f4-83bd-0d718dbcb485"
+          ]
+        }
+      ],
+      "x": 41,
+      "y": 206
+    },
+    {
+      "type": "command",
+      "name": "bban",
+      "guid": "60839bd4-2cd2-43dd-8711-56d0b0020b15",
+      "outputs": [
+        {
+          "label": "responses",
+          "connections": [
+            "b92b1077-56ac-4bde-adae-9efcaf0b4302"
+          ]
+        }
+      ],
+      "x": 45,
+      "y": 379
+    },
+    {
+      "type": "response",
+      "name": "check for ban perms",
+      "guid": "b92b1077-56ac-4bde-adae-9efcaf0b4302",
+      "embedfields": [],
+      "outputs": [
+        {
+          "label": "has perms",
+          "connections": [
+            "19334d08-0461-4b51-9736-3f04f1d4d180"
+          ]
+        },
+        {
+          "label": "doesn't have perms",
+          "connections": [
+            "4d0d7f45-c125-412c-871d-4f3cd2fcc35b"
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "60839bd4-2cd2-43dd-8711-56d0b0020b15"
+        }
+      ],
+      "x": 258,
+      "y": 375,
+      "rtype": "User Action",
+      "rsubtype": "Check User Permissions",
+      "formdata": [
+        "$$CommandAuthor$$",
+        [
+          "ADMINISTRATOR"
+        ]
+      ],
+      "formnames": [
+        "user",
+        "permissions"
+      ]
+    },
+    {
+      "type": "response",
+      "name": "doesnt have ban perms",
+      "guid": "4d0d7f45-c125-412c-871d-4f3cd2fcc35b",
+      "embedfields": [],
+      "outputs": [
+        {
+          "label": "next response",
+          "connections": []
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "b92b1077-56ac-4bde-adae-9efcaf0b4302"
+        }
+      ],
+      "x": 260,
+      "y": 547,
+      "rtype": "Message",
+      "rsubtype": "Send Message",
+      "formdata": [
+        "$$CommandChannel$$",
+        "<@$$CommandAuthor$$> you do not have the perms for this command"
+      ],
+      "formnames": [
+        "channelName",
+        "messageText"
+      ]
+    },
+    {
+      "type": "response",
+      "name": "get user to ban",
+      "guid": "19334d08-0461-4b51-9736-3f04f1d4d180",
+      "embedfields": [],
+      "outputs": [
+        {
+          "label": "next response",
+          "connections": [
+            "1946f5d1-717c-4a98-ac7f-82e86547f5d1"
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "b92b1077-56ac-4bde-adae-9efcaf0b4302"
+        }
+      ],
+      "x": 423,
+      "y": 453,
+      "rtype": "Variable",
+      "rsubtype": "Get Mentioned User",
+      "formdata": [
+        "banuser",
+        "User"
+      ],
+      "formnames": [
+        "varname",
+        "vartype"
+      ]
+    },
+    {
+      "type": "response",
+      "name": "ban user",
+      "guid": "1946f5d1-717c-4a98-ac7f-82e86547f5d1",
+      "embedfields": [],
+      "outputs": [
+        {
+          "label": "next response",
+          "connections": [
+            "6e9777c5-81a6-4f69-8a4c-6a9ef23c4474"
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "19334d08-0461-4b51-9736-3f04f1d4d180"
+        }
+      ],
+      "x": 606,
+      "y": 474,
+      "rtype": "User Action",
+      "rsubtype": "Ban User",
+      "formdata": [
+        "%%banuser%%",
+        "",
+        ""
+      ],
+      "formnames": [
+        "user",
+        "reason",
+        "days"
+      ]
+    },
+    {
+      "type": "response",
+      "name": "user has been banned",
+      "guid": "6e9777c5-81a6-4f69-8a4c-6a9ef23c4474",
+      "embedfields": [],
+      "outputs": [
+        {
+          "label": "next response",
+          "connections": []
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "1946f5d1-717c-4a98-ac7f-82e86547f5d1"
+        }
+      ],
+      "x": 799,
+      "y": 517,
+      "rtype": "Message",
+      "rsubtype": "Send Message",
+      "formdata": [
+        "$$CommandChannel$$",
+        "User has been banned"
+      ],
+      "formnames": [
+        "channelName",
+        "messageText"
+      ]
+    },
+    {
+      "type": "command",
+      "name": "caxnx",
+      "guid": "35310890-6ff8-47f3-8f63-53019f77b46e",
+      "outputs": [
+        {
+          "label": "responses",
+          "connections": [
+            "b3420ba5-135b-4a9d-adaa-98d3f6e08a33"
+          ]
+        }
+      ],
+      "x": 39,
+      "y": 798
+    },
+    {
+      "type": "response",
+      "name": "Bot game",
+      "guid": "b3420ba5-135b-4a9d-adaa-98d3f6e08a33",
+      "embedfields": [],
+      "outputs": [
+        {
+          "label": "next response",
+          "connections": [
+            "2840d42c-7dcd-48cf-a3fd-d92120c0e4e5"
+          ]
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "35310890-6ff8-47f3-8f63-53019f77b46e"
+        }
+      ],
+      "x": 275,
+      "y": 801,
+      "rtype": "Bot Action",
+      "rsubtype": "Set Bot Game",
+      "formdata": [
+        "!helpme"
+      ],
+      "formnames": [
+        "game"
+      ]
+    },
+    {
+      "type": "response",
+      "name": "changed bot game",
+      "guid": "2840d42c-7dcd-48cf-a3fd-d92120c0e4e5",
+      "embedfields": [],
+      "outputs": [
+        {
+          "label": "next response",
+          "connections": []
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "b3420ba5-135b-4a9d-adaa-98d3f6e08a33"
+        }
+      ],
+      "x": 494,
+      "y": 808,
+      "rtype": "Message",
+      "rsubtype": "Send Message",
+      "formdata": [
+        "$$CommandChannel$$",
+        "Bot status has been updated."
+      ],
+      "formnames": [
+        "channelName",
+        "messageText"
+      ]
+    },
+    {
+      "type": "response",
+      "name": "help menu",
+      "guid": "b133cbac-9392-4c2b-b628-b54c59b3d564",
+      "embedfields": [
+        {
+          "name": "",
+          "value": "---- Moderator Commands ----",
+          "inline": "true"
+        },
+        {
+          "name": "!bban",
+          "value": "Bans the @ user.",
+          "inline": "false"
+        },
+        {
+          "name": "!bkick",
+          "value": "Kicks the @ user.",
+          "inline": "true"
+        },
+        {
+          "name": "",
+          "value": "",
+          "inline": "true"
+        }
+      ],
+      "outputs": [
+        {
+          "label": "next response",
+          "connections": []
+        }
+      ],
+      "inputs": [
+        {
+          "label": "trigger",
+          "id": "5dc75895-4255-4322-acac-adc7bd9313c8"
+        }
+      ],
+      "x": 233,
+      "y": 76,
+      "rtype": "Message",
+      "rsubtype": "Send Embed",
+      "formdata": [
+        "$$Command Channel",
+        "FFFFFF",
+        "Balla Leaks",
+        "",
+        "By: Balla Leaks Community",
+        "",
+        "",
+        "A bot for Balla Leaks",
+        "",
+        "",
+        "",
+        "false"
+      ],
+      "formnames": [
+        "channelname",
+        "color",
+        "title",
+        "url",
+        "authorname",
+        "authorimageurl",
+        "authorlink",
+        "description",
+        "thumbnail",
+        "image",
+        "footer",
+        "timestamp"
+      ]
+    }
+  ]
+}
